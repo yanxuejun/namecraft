@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { blogPosts, getPostBySlug } from '../../data/blog.js';
+
+export function getStaticPaths() {
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = getPostBySlug(slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const title = post.title;
+const description = post.excerpt;
+---
+
+<Layout title={title} description={description} canonical={`/blog/${post.slug}`}>
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-brand-dark to-brand-dark/90 py-16 md:py-24">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="/blog" class="inline-flex items-center text-white/60 hover:text-brand-coral transition-colors mb-6 text-sm">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Blog
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="px-3 py-1 rounded-full bg-brand-coral/20 text-brand-coral text-sm font-medium">
+            {post.category}
+          </span>
+          <span class="text-white/40 text-sm">{post.readTime}</span>
+        </div>
+        <h1 class="font-display font-bold text-3xl md:text-5xl text-white mb-4 leading-tight">
+          {post.title}
+        </h1>
+        <p class="text-white/60">{post.date}</p>
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="bg-white rounded-2xl p-8 md:p-12 border border-gray-100">
+        <div class="prose prose-lg max-w-none">
+          {post.content.map((block, index) => {
+            if (block.type === 'h2') {
+              return <h2 class="font-display font-bold text-2xl text-brand-dark mt-10 mb-4">{block.text}</h2>;
+            }
+            if (block.type === 'p') {
+              return <p class="text-brand-dark/70 leading-relaxed mb-6">{block.text}</p>;
+            }
+            return null;
+          })}
+        </div>
+
+        <!-- Share -->
+        <div class="mt-12 pt-8 border-t border-gray-100">
+          <h3 class="font-semibold text-brand-dark mb-4">Share this article</h3>
+          <div class="flex gap-3">
+            <a
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://whatmeans.name/blog/${post.slug}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-lg bg-brand-cream flex items-center justify-center text-brand-dark/60 hover:bg-brand-coral hover:text-white transition-all"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://whatmeans.name/blog/${post.slug}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-lg bg-brand-cream flex items-center justify-center text-brand-dark/60 hover:bg-brand-coral hover:text-white transition-all"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a
+              href={`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(`https://whatmeans.name/blog/${post.slug}`)}&description=${encodeURIComponent(post.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-lg bg-brand-cream flex items-center justify-center text-brand-dark/60 hover:bg-brand-coral hover:text-white transition-all"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Posts -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <h2 class="font-display font-bold text-2xl text-brand-dark mb-6">More Articles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {blogPosts
+          .filter(p => p.slug !== post.slug)
+          .slice(0, 2)
+          .map(relatedPost => (
+            <a href={`/blog/${relatedPost.slug}`} class="group bg-white rounded-2xl border border-gray-100 p-6 card-hover">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-0.5 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-medium">
+                  {relatedPost.category}
+                </span>
+                <span class="text-xs text-brand-dark/40">{relatedPost.readTime}</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-brand-dark group-hover:text-brand-coral transition-colors mb-2">
+                {relatedPost.title}
+              </h3>
+              <p class="text-sm text-brand-dark/60 line-clamp-2">{relatedPost.excerpt}</p>
+            </a>
+          ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -89,7 +89,7 @@ const categories = ['All', 'Trends', 'Analysis', 'Guide'];
       <!-- Posts Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {posts.map((post, idx) => (
-          <article class={`group bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover ${idx === 0 ? 'md:col-span-2' : ''}`}>
+          <a href={`/blog/${post.slug}`} class={`group bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover block ${idx === 0 ? 'md:col-span-2' : ''}`}>
             <div class={`bg-gradient-to-br from-brand-coral/10 to-brand-yellow/10 ${idx === 0 ? 'h-48' : 'h-32'}`}>
               <div class="w-full h-full flex items-center justify-center">
                 <span class="font-display font-bold text-4xl text-brand-coral/20">{post.title[0]}</span>
@@ -113,7 +113,7 @@ const categories = ['All', 'Trends', 'Analysis', 'Guide'];
                 <span class="text-brand-coral font-medium text-sm group-hover:underline">Read more →</span>
               </div>
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </div>
