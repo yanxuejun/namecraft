@@ -1,5 +1,28 @@
 # GTM & GA4 配置指南
 
+## 快速导入
+
+本项目已提供完整的 GTM 容器配置文件，可直接导入：
+
+**文件**: [`gtm-container-export.json`](./gtm-container-export.json)
+
+**导入步骤**:
+1. 进入 [Google Tag Manager](https://tagmanager.google.com)
+2. 选择容器 → **Admin** → **Import Container**
+3. 选择 `gtm-container-export.json`
+4. **Choose workspace**: 现有工作区或新建
+5. **Choose import option**: Merge（推荐）或 Overwrite
+6. 预览 → 提交 → 发布
+
+导入后自动生成：
+- ✅ GA4 配置标签（ID: `G-TPE6F6WZ5W`）
+- ✅ 11 个数据层变量
+- ✅ 7 个触发器（页面浏览 + 4 个自定义事件 + 滚动深度 + 出站链接）
+- ✅ 7 个 GA4 事件标签
+- ✅ 10 个内置变量
+
+---
+
 ## 已部署的追踪代码
 
 | 类型 | ID | 位置 |
