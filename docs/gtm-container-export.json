@@ -416,7 +416,7 @@
         "type": "LINK_CLICK",
         "autoEventFilter": [
           {
-            "type": "NOT_CONTAINS",
+            "type": "CONTAINS",
             "parameter": [
               {
                 "type": "TEMPLATE",
@@ -427,6 +427,11 @@
                 "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "whatmeans.name"
+              },
+              {
+                "type": "BOOLEAN",
+                "key": "negate",
+                "value": "true"
               }
             ]
           }
