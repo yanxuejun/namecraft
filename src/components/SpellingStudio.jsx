@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { spellingVariants } from '../data/names.js';
 
 const spellingRules = {
   ava: [
@@ -55,6 +54,17 @@ const spellingRules = {
   ],
 };
 
+function trackSpellingEvent(name, variantCount, isCustom) {
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push({
+      event: 'generate_spelling',
+      spelling_name: name,
+      spelling_variant_count: variantCount,
+      spelling_type: isCustom ? 'custom' : 'preset',
+    });
+  }
+}
+
 export default function SpellingStudio() {
   const [selectedName, setSelectedName] = useState('ava');
   const [customInput, setCustomInput] = useState('');
@@ -63,9 +73,16 @@ export default function SpellingStudio() {
   const currentVariants = spellingRules[selectedName] || [];
   const displayName = selectedName.charAt(0).toUpperCase() + selectedName.slice(1);
 
+  const handleSelectName = (key) => {
+    setSelectedName(key);
+    setShowCustom(false);
+    trackSpellingEvent(key, spellingRules[key]?.length || 0, false);
+  };
+
   const handleCustomGenerate = () => {
     if (!customInput.trim()) return;
     setShowCustom(true);
+    trackSpellingEvent(customInput.trim(), 8, true);
   };
 
   return (
@@ -79,7 +96,7 @@ export default function SpellingStudio() {
           {Object.keys(spellingRules).map((key) => (
             <button
               key={key}
-              onClick={() => { setSelectedName(key); setShowCustom(false); }}
+              onClick={() => handleSelectName(key)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 selectedName === key
                   ? 'bg-brand-coral text-white'

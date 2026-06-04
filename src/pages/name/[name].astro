@@ -160,5 +160,17 @@ const genderColor = genderColors[data.gender.split(' ')[0]] || 'bg-gray-100 text
     </div>
   </main>
 
+  <script is:inline define:vars={{ name: data.name, rank: data.popularity.rank2026, gender: data.gender, origin: data.origin }}>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'view_name',
+      name_name: name,
+      name_rank: rank,
+      name_gender: gender,
+      name_origin: origin,
+      page_type: 'name_detail',
+    });
+  </script>
+
   <Footer />
 </Layout>

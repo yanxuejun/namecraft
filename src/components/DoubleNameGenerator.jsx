@@ -13,6 +13,15 @@ const secondNames = [
   'Lynn', 'Rae', 'Sue', 'Jean',
 ];
 
+function trackDoubleNameEvent(eventName, data) {
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push({
+      event: eventName,
+      ...data,
+    });
+  }
+}
+
 export default function DoubleNameGenerator() {
   const [generated, setGenerated] = useState(doubleNames.slice(0, 5));
   const [filter, setFilter] = useState('');
@@ -33,14 +42,29 @@ export default function DoubleNameGenerator() {
       }
     }
     setGenerated(results);
+    trackDoubleNameEvent('generate_double_name', {
+      double_name_count: results.length,
+      double_names: results.map(r => r.full).join(','),
+    });
   };
 
   const toggleFavorite = (name) => {
     const next = new Set(favorites);
-    if (next.has(name)) {
-      next.delete(name);
-    } else {
+    const isAdding = !next.has(name);
+    if (isAdding) {
       next.add(name);
+      trackDoubleNameEvent('favorite_double_name', {
+        double_name: name,
+        favorite_action: 'add',
+        favorite_count: next.size,
+      });
+    } else {
+      next.delete(name);
+      trackDoubleNameEvent('favorite_double_name', {
+        double_name: name,
+        favorite_action: 'remove',
+        favorite_count: next.size,
+      });
     }
     setFavorites(next);
   };
