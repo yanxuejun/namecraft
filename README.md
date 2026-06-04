@@ -1,4 +1,4 @@
-# NameCraft
+# WhatMeans
 
 A modern baby names discovery website featuring 2026 trends, name meanings, creative spellings, and double-name generation.
 

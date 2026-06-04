@@ -12,7 +12,7 @@ export interface Props {
 
 const {
   title,
-  description = 'Discover 2026 baby name trends, meanings, unique spellings, and creative name ideas. NameCraft helps you find the perfect name for your little one.',
+  description = 'Discover 2026 baby name trends, meanings, unique spellings, and creative name ideas. WhatMeans helps you find the perfect name for your little one.',
   image = '/images/og-default.jpg',
   type = 'website',
   canonical,
@@ -20,7 +20,7 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://whatmeans.name';
-const fullTitle = title === 'NameCraft' ? title : `${title} | NameCraft`;
+const fullTitle = title === 'WhatMeans' ? title : `${title} | WhatMeans`;
 const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 ---
 
@@ -43,7 +43,7 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullImage} />
-    <meta property="og:site_name" content="NameCraft" />
+    <meta property="og:site_name" content="WhatMeans" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
@@ -65,7 +65,7 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "NameCraft",
+        "name": "WhatMeans",
         "url": "https://whatmeans.name",
         "description": "Discover 2026 baby name trends, meanings, and creative name ideas",
         "potentialAction": {
