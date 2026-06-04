@@ -1,0 +1,123 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = [
+  {
+    title: '2026 Baby Name Trends: From Billiam to Artemis',
+    excerpt: 'The most surprising naming trends of 2026, including invented names, dramatic meanings, and the double-name revival hitting record highs.',
+    date: '2026-06-01',
+    category: 'Trends',
+    slug: '2026-baby-name-trends',
+    readTime: '6 min read',
+  },
+  {
+    title: 'Why Brooks Became the Most Searched Name of 2026',
+    excerpt: 'An in-depth look at how a nature-inspired surname-turned-first-name captured American parents\' attention this year.',
+    date: '2026-05-28',
+    category: 'Analysis',
+    slug: 'why-brooks-trending-2026',
+    readTime: '5 min read',
+  },
+  {
+    title: 'The Double Name Revival: Why Mary-Anne is Back',
+    excerpt: 'Double names are at an all-time high. We explore the cultural forces driving this elegant naming tradition back into the mainstream.',
+    date: '2026-05-20',
+    category: 'Trends',
+    slug: 'double-name-revival-2026',
+    readTime: '7 min read',
+  },
+  {
+    title: 'Creative Spellings: How to Make a Classic Name Unique',
+    excerpt: 'Ava becomes Ayva, Nicole becomes Nikole — explore the art and science of creative name spellings in 2026.',
+    date: '2026-05-15',
+    category: 'Guide',
+    slug: 'creative-spellings-guide',
+    readTime: '8 min read',
+  },
+  {
+    title: 'East Coast vs West Coast: How Geography Shapes Baby Names',
+    excerpt: 'Aiden on the West Coast, Jayden on the East — fascinating regional patterns reveal America\'s naming divide.',
+    date: '2026-05-10',
+    category: 'Analysis',
+    slug: 'regional-baby-name-differences',
+    readTime: '6 min read',
+  },
+  {
+    title: 'Dramatic Meanings: Why Parents Want Names That Mean Chaos',
+    excerpt: 'From Khaos to Rebel, explore the rising trend of parents seeking names with bold, powerful, and even dark meanings.',
+    date: '2026-05-05',
+    category: 'Trends',
+    slug: 'dramatic-name-meanings-2026',
+    readTime: '5 min read',
+  },
+];
+
+const categories = ['All', 'Trends', 'Analysis', 'Guide'];
+---
+
+<Layout title="Blog - Baby Name Trends & Inspiration" description="Read the latest articles on baby name trends, meanings, creative spellings, and naming inspiration for 2026." canonical="/blog">
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-brand-dark to-brand-dark/90 py-16 md:py-24">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block px-4 py-1 rounded-full bg-brand-coral/20 text-brand-coral text-sm font-medium mb-4">
+          NameCraft Blog
+        </span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl text-white mb-4">
+          Naming Insights & Inspiration
+        </h1>
+        <p class="text-lg text-white/60 max-w-2xl mx-auto">
+          Deep dives into trends, culture, and the art of choosing the perfect name.
+        </p>
+      </div>
+    </section>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-2 mb-10">
+        {categories.map(cat => (
+          <button class="px-4 py-2 rounded-full text-sm font-medium bg-brand-cream text-brand-dark hover:bg-brand-coral hover:text-white transition-all">
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Posts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {posts.map((post, idx) => (
+          <article class={`group bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover ${idx === 0 ? 'md:col-span-2' : ''}`}>
+            <div class={`bg-gradient-to-br from-brand-coral/10 to-brand-yellow/10 ${idx === 0 ? 'h-48' : 'h-32'}`}>
+              <div class="w-full h-full flex items-center justify-center">
+                <span class="font-display font-bold text-4xl text-brand-coral/20">{post.title[0]}</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-0.5 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-medium">
+                  {post.category}
+                </span>
+                <span class="text-xs text-brand-dark/40">{post.readTime}</span>
+              </div>
+              <h2 class={`font-display font-bold text-brand-dark mb-2 group-hover:text-brand-coral transition-colors ${idx === 0 ? 'text-2xl' : 'text-xl'}`}>
+                {post.title}
+              </h2>
+              <p class="text-brand-dark/60 text-sm leading-relaxed mb-4">
+                {post.excerpt}
+              </p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-brand-dark/40">{post.date}</span>
+                <span class="text-brand-coral font-medium text-sm group-hover:underline">Read more →</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

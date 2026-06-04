@@ -1,0 +1,82 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = 'Discover 2026 baby name trends, meanings, unique spellings, and creative name ideas. NameCraft helps you find the perfect name for your little one.',
+  image = '/images/og-default.jpg',
+  type = 'website',
+  canonical,
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://namecraft.pages.dev';
+const fullTitle = title === 'NameCraft' ? title : `${title} | NameCraft`;
+const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Canonical -->
+    {canonical && <link rel="canonical" href={`${siteUrl}${canonical}`} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={siteUrl + Astro.url.pathname} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImage} />
+    <meta property="og:site_name" content="NameCraft" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data: Website -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "NameCraft",
+        "url": "https://namecraft.pages.dev",
+        "description": "Discover 2026 baby name trends, meanings, and creative name ideas",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://namecraft.pages.dev/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-brand-cream">
+    <slot />
+  </body>
+</html>

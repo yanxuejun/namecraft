@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #2D3436;
+    background-color: #F7F7F7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-brand-coral text-white font-semibold rounded-full transition-all duration-300 hover:bg-opacity-90 hover:shadow-lg hover:scale-105;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 border-2 border-brand-dark text-brand-dark font-semibold rounded-full transition-all duration-300 hover:bg-brand-dark hover:text-white;
+  }
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}

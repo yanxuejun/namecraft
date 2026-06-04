@@ -1,0 +1,277 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { trendingNames2026, doubleNames, inventedNames, dramaticNames, topSpellingSearches, statePreferences } from '../../data/names.js';
+
+const title = '2026 Baby Name Trends Report';
+const description = 'The definitive guide to 2026 baby name trends: double names, invented names like Billiam, dramatic meanings, regional differences, and creative spellings.';
+---
+
+<Layout title={title} description={description} canonical="/trends/2026">
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-gradient-to-br from-brand-dark via-brand-dark to-brand-coral/20 py-20 md:py-28">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block px-4 py-1 rounded-full bg-brand-coral/20 text-brand-coral text-sm font-medium mb-6">
+          Annual Report
+        </span>
+        <h1 class="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6">
+          2026 Baby Name Trends
+        </h1>
+        <p class="text-lg md:text-xl text-white/60 max-w-2xl mx-auto">
+          From record-breaking double names to invented words like Billiam —
+          here's everything shaping how America names its babies this year.
+        </p>
+      </div>
+    </section>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- Table of Contents -->
+      <nav class="bg-white rounded-2xl p-6 border border-gray-100 mb-12">
+        <h2 class="font-display font-bold text-lg text-brand-dark mb-4">Contents</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <a href="#top5" class="text-brand-coral hover:underline text-sm">→ Top 5 Most Searched Meanings</a>
+          <a href="#double" class="text-brand-coral hover:underline text-sm">→ Double Name Revival</a>
+          <a href="#invented" class="text-brand-coral hover:underline text-sm">→ Invented Names</a>
+          <a href="#dramatic" class="text-brand-coral hover:underline text-sm">→ Dramatic Meanings</a>
+          <a href="#regional" class="text-brand-coral hover:underline text-sm">→ Regional Differences</a>
+          <a href="#spelling" class="text-brand-coral hover:underline text-sm">→ Creative Spellings</a>
+        </div>
+      </nav>
+
+      <!-- Top 5 -->
+      <section id="top5" class="mb-16">
+        <h2 class="font-display font-bold text-3xl text-brand-dark mb-6">Top 5 Most Searched Name Meanings (YTD 2026)</h2>
+        <p class="text-brand-dark/60 mb-8">
+          These are the names whose meanings Americans searched most in 2026.
+          Each represents a different naming philosophy — from nature (Brooks) to mythology (Raya's multi-cultural roots).
+        </p>
+
+        <div class="space-y-4">
+          {trendingNames2026.map(name => (
+            <a href={`/name/${name.name.toLowerCase()}`} class="block bg-white rounded-2xl p-6 border border-gray-100 card-hover">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-coral text-white flex items-center justify-center font-display font-bold text-lg">
+                  {name.rank}
+                </span>
+                <div class="flex-1">
+                  <div class="flex items-center gap-3 mb-1">
+                    <h3 class="font-display font-bold text-xl text-brand-dark">{name.name}</h3>
+                    <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-xs">{name.gender}</span>
+                    <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-mono">{name.trend}</span>
+                  </div>
+                  <p class="text-brand-dark/60">{name.meaning}</p>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Double Names -->
+      <section id="double" class="mb-16">
+        <h2 class="font-display font-bold text-3xl text-brand-dark mb-6">The Double Name Revival</h2>
+
+        <div class="bg-gradient-to-br from-brand-coral/5 to-brand-yellow/5 rounded-2xl p-8 border border-brand-coral/10 mb-8">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="text-4xl">🔥</span>
+            <div>
+              <p class="font-display font-bold text-2xl text-brand-dark">Record High Search Volume</p>
+              <p class="text-brand-dark/60">"Double names" searches hit an all-time high in 2026.</p>
+            </div>
+          </div>
+          <blockquote class="border-l-4 border-brand-coral pl-4 italic text-brand-dark/70">
+            "double names that start with mary" was the hottest related search of the past year.
+          </blockquote>
+        </div>
+
+        <p class="text-brand-dark/60 mb-6">
+          Double names (or hyphenated names) combine two given names into one identity.
+          They're particularly popular in the American South and are seeing a nationwide resurgence.
+        </p>
+
+        <h3 class="font-display font-semibold text-xl text-brand-dark mb-4">Popular Double Names</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          {doubleNames.map(dn => (
+            <div class="bg-white rounded-xl p-4 text-center border border-gray-100">
+              <div class="font-display font-bold text-lg text-brand-dark">{dn.full}</div>
+              <div class="text-xs text-brand-dark/40 mt-1">{dn.gender}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Invented Names -->
+      <section id="invented" class="mb-16">
+        <h2 class="font-display font-bold text-3xl text-brand-dark mb-6">Invented Names & Viral Curiosity</h2>
+
+        <p class="text-brand-dark/60 mb-6">
+          2026 saw an explosion of interest in completely invented or unconventional names.
+          Parents aren't just choosing from existing names — they're asking if <em>anything</em> can be a name.
+        </p>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 mb-6">
+          <h3 class="font-display font-semibold text-lg text-brand-dark mb-4">Top "Is [Word] a Name?" Searches</h3>
+          <div class="space-y-3">
+            {inventedNames.filter(i => i.invented).map(item => (
+              <div class="flex items-center gap-4 p-4 rounded-xl bg-brand-cream">
+                <span class="text-2xl">❓</span>
+                <div>
+                  <div class="font-display font-bold text-lg text-brand-dark">"{item.query}"</div>
+                  <div class="text-sm text-brand-dark/50">One of the hottest name-related searches this year</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Dramatic Meanings -->
+      <section id="dramatic" class="mb-16">
+        <h2 class="font-display font-bold text-3xl text-brand-dark mb-6">Dramatic Name Meanings</h2>
+
+        <p class="text-brand-dark/60 mb-6">
+          Perhaps the most surprising trend of 2026: parents actively seeking names with
+          edgy, dramatic, or even dark meanings. "Girl names that mean chaos" and
+          "boy names that mean darkness" were among the hottest semantic searches.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6 border border-red-100">
+            <h3 class="font-display font-semibold text-lg text-red-800 mb-4">Names Meaning Chaos</h3>
+            <div class="space-y-3">
+              {dramaticNames.chaos.map(n => (
+                <a href={`/name/${n.name.toLowerCase()}`} class="block flex items-center justify-between p-3 bg-white rounded-lg hover:shadow-md transition-all">
+                  <div>
+                    <span class="font-display font-bold text-brand-dark">{n.name}</span>
+                    <span class="text-sm text-brand-dark/50 ml-2">{n.meaning}</span>
+                  </div>
+                  <span class="text-xs px-2 py-1 rounded-full bg-red-100 text-red-600">{n.gender}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-2xl p-6 border border-gray-200">
+            <h3 class="font-display font-semibold text-lg text-gray-800 mb-4">Names Meaning Darkness</h3>
+            <div class="space-y-3">
+              {dramaticNames.darkness.map(n => (
+                <a href={`/name/${n.name.toLowerCase()}`} class="block flex items-center justify-between p-3 bg-white rounded-lg hover:shadow-md transition-all">
+                  <div>
+                    <span class="font-display font-bold text-brand-dark">{n.name}</span>
+                    <span class="text-sm text-brand-dark/50 ml-2">{n.meaning}</span>
+                  </div>
+                  <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600">{n.gender}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Regional -->
+      <section id="regional" class="mb-16">
+        <h2 class="font-display font-bold text-3xl text-brand-dark mb-6">Regional Differences</h2>
+
+        <p class="text-brand-dark/60 mb-6">
+          American naming culture isn't uniform. Coast to coast, state to state,
+          fascinating preferences emerge that reflect local culture and history.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-2xl p-6 border border-gray-100">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🏔️</span>
+              <h3 class="font-display font-semibold text-lg">Washington State</h3>
+            </div>
+            <p class="text-brand-dark/60">
+              The <strong>only</strong> state where <span class="font-display font-bold text-brand-coral">Jaxon</span> is searched more than both Braxton and Paxton.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-gray-100">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🌊</span>
+              <h3 class="font-display font-semibold text-lg">West Coast vs East Coast</h3>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="flex-1 text-center p-3 rounded-xl bg-blue-50">
+                <div class="font-display font-bold text-blue-700">Aiden</div>
+                <div class="text-xs text-blue-600">West Coast</div>
+              </div>
+              <span class="text-brand-dark/30 font-bold">vs</span>
+              <div class="flex-1 text-center p-3 rounded-xl bg-orange-50">
+                <div class="font-display font-bold text-orange-700">Jayden</div>
+                <div class="text-xs text-orange-600">East Coast</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-gray-100">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🤠</span>
+              <h3 class="font-display font-semibold text-lg">Texas</h3>
+            </div>
+            <p class="text-brand-dark/60">
+              The only state where <span class="font-display font-bold text-brand-coral">Katy</span> beats Katie in searches.
+              Also one of only two states preferring Madeleine over Madeline.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-gray-100">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🏔️</span>
+              <h3 class="font-display font-semibold text-lg">Wyoming & Utah</h3>
+            </div>
+            <p class="text-brand-dark/60">
+              Since 2004, both states have preferred <span class="font-display font-bold text-brand-coral">Liz</span> over Beth
+              as a nickname for Elizabeth.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spelling -->
+      <section id="spelling" class="mb-16">
+        <h2 class="font-display font-bold text-3xl text-brand-dark mb-6">Creative Spellings at Record Highs</h2>
+
+        <p class="text-brand-dark/60 mb-6">
+          Searches for "different ways to spell [name]" reached an all-time high in 2026.
+          Parents are increasingly seeking unique orthographic twists on traditional names.
+        </p>
+
+        <h3 class="font-display font-semibold text-xl text-brand-dark mb-4">Top 5 Spelling Searches</h3>
+        <div class="space-y-4">
+          {topSpellingSearches.map((item, idx) => (
+            <div class="bg-white rounded-2xl p-6 border border-gray-100">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="w-10 h-10 rounded-full bg-brand-coral/10 text-brand-coral flex items-center justify-center font-display font-bold">
+                  {item.rank}
+                </span>
+                <h4 class="font-display font-bold text-2xl text-brand-dark">{item.name}</h4>
+              </div>
+              <a href={`/spelling/${item.name.toLowerCase()}`} class="text-brand-coral font-medium hover:underline">
+                Explore {item.name} spellings →
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="text-center py-12">
+        <h2 class="font-display font-bold text-3xl text-brand-dark mb-4">Find Your Perfect Name</h2>
+        <p class="text-brand-dark/60 mb-8">Explore meanings, try creative spellings, or generate unique combinations.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/spelling" class="btn-primary">Spelling Studio</a>
+          <a href="/double-names" class="btn-secondary">Double Name Generator</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

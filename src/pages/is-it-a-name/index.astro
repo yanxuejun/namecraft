@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { inventedNames } from '../../data/names.js';
+
+const title = 'Is It a Name? - Check Any Word';
+const description = 'Curious if a word can be a baby name? Check Billiam, Iso, and other trending invented names. See what parents are searching in 2026.';
+---
+
+<Layout title={title} description={description} canonical="/is-it-a-name">
+  <Header />
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12">
+      <span class="text-6xl mb-4 block">🤔</span>
+      <h1 class="font-display font-bold text-4xl md:text-5xl text-brand-dark mb-4">
+        Is It a Name?
+      </h1>
+      <p class="text-lg text-brand-dark/60 max-w-xl mx-auto">
+        In 2026, parents are asking if <em>anything</em> can be a name.
+        Here are the most searched "is [word] a name?" queries.
+      </p>
+    </div>
+
+    <!-- Trending Queries -->
+    <div class="space-y-4 mb-12">
+      {inventedNames.filter(i => i.invented).map(item => (
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-brand-yellow/20 flex items-center justify-center text-2xl">
+              ❓
+            </div>
+            <div class="flex-1">
+              <h2 class="font-display font-bold text-2xl text-brand-dark mb-1">
+                "{item.query}"
+              </h2>
+              <p class="text-brand-dark/60">
+                This was one of the hottest name-related searches of 2026.
+                Parents are increasingly open to invented and unconventional names.
+              </p>
+            </div>
+          </div>
+          <div class="mt-4 p-4 rounded-xl bg-brand-cream">
+            <p class="text-sm text-brand-dark/70">
+              <strong>Our take:</strong> While not traditionally recognized, names like <strong>{item.name}</strong>
+              reflect the growing trend of linguistic creativity in baby naming.
+              If it has a sound you love and a meaning you assign to it, it can absolutely be a name!
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Philosophy -->
+    <div class="bg-gradient-to-br from-brand-dark to-brand-dark/90 rounded-2xl p-8 text-center">
+      <h2 class="font-display font-bold text-2xl text-white mb-4">
+        What Makes a Name?
+      </h2>
+      <p class="text-white/70 mb-6">
+        A name is simply a word used to identify a person. While traditional names have
+        historical and etymological roots, modern naming is increasingly about
+        <strong class="text-brand-coral">personal meaning</strong> and <strong class="text-brand-coral">sound</strong>.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+          <div class="text-2xl mb-2">📜</div>
+          <h3 class="font-semibold text-white mb-1">Traditional</h3>
+          <p class="text-sm text-white/60">Names with centuries of documented use and etymological roots.</p>
+        </div>
+        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+          <div class="text-2xl mb-2">🌿</div>
+          <h3 class="font-semibold text-white mb-1">Nature</h3>
+          <p class="text-sm text-white/60">Words from nature repurposed as names: River, Bear, Willow.</p>
+        </div>
+        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+          <div class="text-2xl mb-2">✨</div>
+          <h3 class="font-semibold text-white mb-1">Invented</h3>
+          <p class="text-sm text-white/60">Newly created words with personal or aesthetic significance.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

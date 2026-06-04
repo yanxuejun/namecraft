@@ -1,0 +1,54 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  href: string;
+  stat?: string;
+  color?: 'coral' | 'yellow' | 'purple' | 'green';
+}
+
+const { title, description, icon, href, stat, color = 'coral' } = Astro.props;
+
+const colorClasses = {
+  coral: 'from-brand-coral/20 to-brand-coral/5 border-brand-coral/20 hover:border-brand-coral/40',
+  yellow: 'from-brand-yellow/20 to-brand-yellow/5 border-brand-yellow/20 hover:border-brand-yellow/40',
+  purple: 'from-purple-500/20 to-purple-500/5 border-purple-500/20 hover:border-purple-500/40',
+  green: 'from-green-500/20 to-green-500/5 border-green-500/20 hover:border-green-500/40',
+};
+
+const iconColors = {
+  coral: 'text-brand-coral',
+  yellow: 'text-amber-600',
+  purple: 'text-purple-600',
+  green: 'text-green-600',
+};
+---
+
+<a
+  href={href}
+  class={`group relative block p-6 md:p-8 rounded-2xl bg-gradient-to-br ${colorClasses[color]} border card-hover`}
+>
+  <div class="flex items-start justify-between mb-4">
+    <div class={`w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm text-2xl ${iconColors[color]}`}>
+      {icon}
+    </div>
+    {stat && (
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/80 text-brand-dark">
+        {stat}
+      </span>
+    )}
+  </div>
+
+  <h3 class="font-display font-bold text-xl text-brand-dark mb-2 group-hover:text-brand-coral transition-colors">
+    {title}
+  </h3>
+  <p class="text-brand-dark/60 text-sm leading-relaxed">
+    {description}
+  </p>
+
+  <div class="mt-4 flex items-center text-sm font-medium text-brand-coral opacity-0 group-hover:opacity-100 transition-opacity"
+>
+    Explore &rarr;
+  </div>
+</a>

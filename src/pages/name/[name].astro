@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { nameData } from '../../data/names.js';
+
+export function getStaticPaths() {
+  return Object.keys(nameData).map(key => ({
+    params: { name: key },
+    props: { data: nameData[key] },
+  }));
+}
+
+const { data } = Astro.props;
+const { name } = Astro.params;
+
+const title = `${data.name} Name Meaning, Origin & Popularity | NameCraft`;
+const description = `${data.name} meaning: ${data.meaning}. Origin: ${data.origin}. ${data.description} Explore popularity trends, variants, nicknames and more on NameCraft.`;
+
+const genderColors = {
+  'Masculine': 'bg-blue-100 text-blue-700',
+  'Feminine': 'bg-pink-100 text-pink-700',
+  'Unisex': 'bg-purple-100 text-purple-700',
+};
+
+const genderColor = genderColors[data.gender.split(' ')[0]] || 'bg-gray-100 text-gray-700';
+---
+
+<Layout title={title} description={description} canonical={`/name/${name}`}>
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-brand-dark/50 mb-8">
+      <a href="/" class="hover:text-brand-coral">Home</a>
+      <span>/</span>
+      <a href="/name" class="hover:text-brand-coral">Names</a>
+      <span>/</span>
+      <span class="text-brand-dark font-medium">{data.name}</span>
+    </nav>
+
+    <!-- Name Header -->
+    <div class="bg-white rounded-2xl p-8 md:p-12 border border-gray-100 mb-8">
+      <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
+        <div>
+          <h1 class="font-display font-bold text-5xl md:text-7xl text-brand-dark mb-2">
+            {data.name}
+          </h1>
+          <div class="flex flex-wrap items-center gap-3">
+            <span class={`px-3 py-1 rounded-full text-sm font-medium ${genderColor}`}>
+              {data.gender}
+            </span>
+            <span class="text-brand-dark/40 text-sm">{data.origin}</span>
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="font-mono text-sm text-brand-dark/40 mb-1">2026 Rank</div>
+          <div class="font-display font-bold text-4xl text-brand-coral">#{data.popularity.rank2026}</div>
+          <div class="text-sm text-green-600 font-medium">{data.popularity.trend}</div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100 pt-6">
+        <p class="text-lg text-brand-dark/70 leading-relaxed mb-4">
+          <strong class="text-brand-dark">Meaning:</strong> {data.meaning}
+        </p>
+        <p class="text-brand-dark/60 leading-relaxed">{data.description}</p>
+      </div>
+    </div>
+
+    <!-- Pronunciation & Details -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="bg-white rounded-2xl p-6 border border-gray-100">
+        <h2 class="font-display font-bold text-xl text-brand-dark mb-4">Pronunciation</h2>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+          </div>
+          <span class="font-mono text-lg text-brand-dark">{data.pronunciation}</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 border border-gray-100">
+        <h2 class="font-display font-bold text-xl text-brand-dark mb-4">Origin</h2>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-brand-yellow/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <span class="text-lg text-brand-dark">{data.origin}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variants & Nicknames -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="bg-white rounded-2xl p-6 border border-gray-100">
+        <h2 class="font-display font-bold text-xl text-brand-dark mb-4">Spelling Variants</h2>
+        <div class="flex flex-wrap gap-2">
+          {data.variants.map(v => (
+            <span class="px-4 py-2 rounded-full bg-brand-cream text-brand-dark font-medium text-sm">{v}</span>
+          ))}
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 border border-gray-100">
+        <h2 class="font-display font-bold text-xl text-brand-dark mb-4">Nicknames</h2>
+        <div class="flex flex-wrap gap-2">
+          {data.nicknames.map(n => (
+            <span class="px-4 py-2 rounded-full bg-brand-coral/10 text-brand-coral font-medium text-sm">{n}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Famous Namesakes -->
+    <div class="bg-white rounded-2xl p-6 border border-gray-100 mb-8">
+      <h2 class="font-display font-bold text-xl text-brand-dark mb-4">Famous Namesakes</h2>
+      <ul class="space-y-3">
+        {data.famous.map(person => (
+          <li class="flex items-center gap-3 text-brand-dark/70">
+            <span class="w-2 h-2 rounded-full bg-brand-coral"></span>
+            {person}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Popularity Chart -->
+    <div class="bg-white rounded-2xl p-6 border border-gray-100 mb-8">
+      <h2 class="font-display font-bold text-xl text-brand-dark mb-4">Popularity Trend</h2>
+      <div class="flex items-end gap-1 h-40">
+        {data.popularity.history.map((val, i) => {
+          const max = Math.max(...data.popularity.history);
+          const height = (val / max) * 100;
+          const year = 2016 + i;
+          return (
+            <div class="flex-1 flex flex-col items-center gap-1">
+              <div
+                class={`w-full rounded-t-md transition-all duration-500 ${i === data.popularity.history.length - 1 ? 'bg-brand-coral' : 'bg-brand-coral/30'}`}
+                style={`height: ${height}%`}
+              ></div>
+              <span class="text-xs text-brand-dark/40">{year}</span>
+            </div>
+          );
+        })}
+      </div>
+      <p class="text-sm text-brand-dark/50 mt-4 text-center">
+        Search popularity ranking over the last 10 years (lower = more popular)
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/spelling" class="btn-primary">Try Creative Spellings</a>
+      <a href="/double-names" class="btn-secondary">Generate Double Names</a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

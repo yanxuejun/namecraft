@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SpellingStudio from '../../components/SpellingStudio.jsx';
+
+const title = 'Spelling Studio - Creative Name Spellings';
+const description = 'Explore creative spellings for popular baby names. Generate unique orthographic variations for Ava, Nicole, Phoebe, Crystal, Mila and more.';
+---
+
+<Layout title={title} description={description} canonical="/spelling">
+  <Header />
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero -->
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-1 rounded-full bg-brand-yellow/20 text-amber-700 text-sm font-medium mb-4">
+        Interactive Tool
+      </span>
+      <h1 class="font-display font-bold text-4xl md:text-5xl text-brand-dark mb-4">
+        Spelling Studio
+      </h1>
+      <p class="text-lg text-brand-dark/60 max-w-2xl mx-auto">
+        Discover creative ways to spell your favorite names. From subtle tweaks to bold reinventions,
+        find the spelling that makes your baby's name truly unique.
+      </p>
+    </div>
+
+    <!-- Tool -->
+    <SpellingStudio client:load />
+
+    <!-- Info Section -->
+    <div class="mt-12 bg-white rounded-2xl p-8 border border-gray-100">
+      <h2 class="font-display font-bold text-2xl text-brand-dark mb-4">Why Creative Spellings?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="font-semibold text-brand-dark mb-2">Individuality</h3>
+          <p class="text-sm text-brand-dark/60">A unique spelling helps your child stand out while keeping a familiar sound.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-brand-dark mb-2">Heritage</h3>
+          <p class="text-sm text-brand-dark/60">Different cultures spell the same name differently — honor your roots.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-brand-dark mb-2">Search Trends</h3>
+          <p class="text-sm text-brand-dark/60">Spelling variation searches hit record highs in 2026 — you're not alone!</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

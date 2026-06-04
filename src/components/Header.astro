@@ -1,0 +1,84 @@
+---
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: '2026 Trends', href: '/trends/2026' },
+  { label: 'Name Meanings', href: '/name' },
+  { label: 'Spelling Studio', href: '/spelling' },
+  { label: 'Double Names', href: '/double-names' },
+  { label: 'Blog', href: '/blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-coral to-brand-yellow flex items-center justify-center">
+          <span class="text-white font-display font-bold text-lg">N</span>
+        </div>
+        <span class="font-display font-bold text-2xl text-brand-dark group-hover:text-brand-coral transition-colors">
+          NameCraft
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        {navItems.map(item => {
+          const isActive = currentPath === item.href || currentPath.startsWith(item.href + '/');
+          return (
+            <a
+              href={item.href}
+              class={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                isActive
+                  ? 'bg-brand-coral/10 text-brand-coral'
+                  : 'text-brand-dark/70 hover:text-brand-dark hover:bg-gray-100'
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg text-brand-dark hover:bg-gray-100 transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+    <div class="px-4 py-3 space-y-1">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+            currentPath === item.href
+              ? 'bg-brand-coral/10 text-brand-coral'
+              : 'text-brand-dark/70 hover:bg-gray-100'
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

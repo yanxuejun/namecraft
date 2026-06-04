@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { nameData, trendingNames2026 } from '../../data/names.js';
+
+const allNames = Object.values(nameData);
+const title = 'Browse Baby Names - Meanings, Origins & Popularity';
+const description = 'Browse our collection of baby names with detailed meanings, origins, popularity trends, spelling variants, and famous namesakes.';
+---
+
+<Layout title={title} description={description} canonical="/name">
+  <Header />
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero -->
+    <div class="text-center mb-12">
+      <h1 class="font-display font-bold text-4xl md:text-5xl text-brand-dark mb-4">
+        Browse Names
+      </h1>
+      <p class="text-lg text-brand-dark/60 max-w-2xl mx-auto">
+        Explore meanings, origins, and popularity trends for each name in our collection.
+      </p>
+    </div>
+
+    <!-- Trending Banner -->
+    <div class="bg-gradient-to-r from-brand-coral/10 to-brand-yellow/10 rounded-2xl p-6 mb-10 border border-brand-coral/10">
+      <h2 class="font-display font-bold text-xl text-brand-dark mb-4">🔥 Trending in 2026</h2>
+      <div class="flex flex-wrap gap-3">
+        {trendingNames2026.map(n => (
+          <a href={`/name/${n.name.toLowerCase()}`} class="px-4 py-2 rounded-full bg-white border border-brand-coral/20 text-brand-dark font-medium hover:bg-brand-coral hover:text-white transition-all">
+            #{n.rank} {n.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Name Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {allNames.map(name => (
+        <a href={`/name/${name.name.toLowerCase()}`} class="group bg-white rounded-2xl p-6 border border-gray-100 card-hover">
+          <div class="flex items-start justify-between mb-3">
+            <h3 class="font-display font-bold text-2xl text-brand-dark group-hover:text-brand-coral transition-colors">
+              {name.name}
+            </h3>
+            <span class="text-brand-dark/30 group-hover:text-brand-coral">→</span>
+          </div>
+          <p class="text-sm text-brand-dark/50 mb-2">{name.meaning}</p>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-xs">{name.origin}</span>
+            <span class="px-2 py-0.5 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-mono">
+              #{name.popularity.rank2026}
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

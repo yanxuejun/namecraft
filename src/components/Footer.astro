@@ -1,0 +1,64 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-dark text-white mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-coral to-brand-yellow flex items-center justify-center">
+            <span class="text-white font-display font-bold text-lg">N</span>
+          </div>
+          <span class="font-display font-bold text-2xl">NameCraft</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Discover the perfect name for your little one. Trends, meanings, spellings, and creative inspiration for modern parents.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-display font-semibold text-lg mb-4">Explore</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="/trends/2026" class="hover:text-brand-coral transition-colors">2026 Trends</a></li>
+          <li><a href="/name" class="hover:text-brand-coral transition-colors">Name Meanings</a></li>
+          <li><a href="/spelling" class="hover:text-brand-coral transition-colors">Spelling Studio</a></li>
+          <li><a href="/double-names" class="hover:text-brand-coral transition-colors">Double Names</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="font-display font-semibold text-lg mb-4">Resources</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="/blog" class="hover:text-brand-coral transition-colors">Blog</a></li>
+          <li><a href="/compare" class="hover:text-brand-coral transition-colors">Compare Names</a></li>
+          <li><a href="/is-it-a-name" class="hover:text-brand-coral transition-colors">Is It a Name?</a></li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div>
+        <h3 class="font-display font-semibold text-lg mb-4">Connect</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="#" class="hover:text-brand-coral transition-colors">Instagram</a></li>
+          <li><a href="#" class="hover:text-brand-coral transition-colors">TikTok</a></li>
+          <li><a href="#" class="hover:text-brand-coral transition-colors">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-500 text-sm">
+        &copy; {currentYear} NameCraft. All rights reserved.
+      </p>
+      <div class="flex gap-6 text-sm text-gray-500">
+        <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms</a>
+        <a href="#" class="hover:text-white transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DoubleNameGenerator from '../../components/DoubleNameGenerator.jsx';
+
+const title = 'Double Name Generator - Create Unique Combinations';
+const description = 'Generate beautiful double names and hyphenated combinations. Explore Mary-Anne, Anna-Marie, Emma-Rose and create your own unique double name.';
+---
+
+<Layout title={title} description={description} canonical="/double-names">
+  <Header />
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero -->
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-1 rounded-full bg-brand-coral/10 text-brand-coral text-sm font-medium mb-4">
+        Interactive Tool
+      </span>
+      <h1 class="font-display font-bold text-4xl md:text-5xl text-brand-dark mb-4">
+        Double Name Generator
+      </h1>
+      <p class="text-lg text-brand-dark/60 max-w-2xl mx-auto">
+        Double names are at an all-time high in 2026. Generate beautiful combinations,
+        filter by your favorite first names, and save your top picks.
+      </p>
+    </div>
+
+    <!-- Tool -->
+    <DoubleNameGenerator client:load />
+
+    <!-- Info -->
+    <div class="mt-12 bg-white rounded-2xl p-8 border border-gray-100">
+      <h2 class="font-display font-bold text-2xl text-brand-dark mb-4">The Double Name Revival</h2>
+      <p class="text-brand-dark/60 mb-6">
+        Double names (also called double-barreled or hyphenated names) combine two given names into a single identity.
+        They peaked in the American South but are now trending nationwide. In 2026, searches for "double names that start with Mary"
+        became the hottest name-related query.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-4 rounded-xl bg-brand-cream">
+          <h3 class="font-semibold text-brand-dark mb-2">Why Choose a Double Name?</h3>
+          <ul class="text-sm text-brand-dark/60 space-y-1">
+            <li>• Honors two family members at once</li>
+            <li>• Sounds elegant and distinctive</li>
+            <li>• Provides multiple nickname options</li>
+            <li>• Balances tradition with creativity</li>
+          </ul>
+        </div>
+        <div class="p-4 rounded-xl bg-brand-cream">
+          <h3 class="font-semibold text-brand-dark mb-2">Popular Combinations</h3>
+          <ul class="text-sm text-brand-dark/60 space-y-1">
+            <li>• Mary-Anne, Mary-Kate, Mary-Jane</li>
+            <li>• Anna-Marie, Emma-Rose</li>
+            <li>• Lily-May, Rose-Marie</li>
+            <li>• Sarah-Jane, Kate-Lynn</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

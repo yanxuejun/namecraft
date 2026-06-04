@@ -1,0 +1,93 @@
+---
+import { trendingNames2026, inventedNames } from '../data/names.js';
+
+const allNames = [
+  ...trendingNames2026.map(n => ({ name: n.name, size: 7 - n.rank, type: 'trending' })),
+  ...inventedNames.map(n => ({ name: n.name, size: n.popularity === 'trending' ? 3 : 2, type: 'invented' })),
+  { name: 'Aiden', size: 4, type: 'classic' },
+  { name: 'Jayden', size: 4, type: 'classic' },
+  { name: 'Mary-Anne', size: 3, type: 'double' },
+  { name: 'Billiam', size: 3, type: 'invented' },
+  { name: 'Iso', size: 3, type: 'invented' },
+  { name: 'Bear', size: 3, type: 'nature' },
+  { name: 'Artemis', size: 3, type: 'mythology' },
+  { name: 'Chaos', size: 2, type: 'dramatic' },
+  { name: 'Darkness', size: 2, type: 'dramatic' },
+  { name: 'Elizabeth', size: 3, type: 'classic' },
+  { name: 'Liz', size: 2, type: 'nickname' },
+  { name: 'Katy', size: 2, type: 'nickname' },
+  { name: 'Katie', size: 2, type: 'nickname' },
+  { name: 'Madeleine', size: 2, type: 'classic' },
+  { name: 'Madeline', size: 2, type: 'classic' },
+  { name: 'Ava', size: 4, type: 'classic' },
+  { name: 'Nicole', size: 2, type: 'classic' },
+  { name: 'Phoebe', size: 2, type: 'classic' },
+  { name: 'Crystal', size: 2, type: 'classic' },
+  { name: 'Mila', size: 3, type: 'classic' },
+  { name: 'Khaos', size: 2, type: 'dramatic' },
+  { name: 'Stormi', size: 2, type: 'dramatic' },
+  { name: 'Rebel', size: 2, type: 'dramatic' },
+  { name: 'Riot', size: 2, type: 'dramatic' },
+  { name: 'Blake', size: 3, type: 'classic' },
+  { name: 'Duncan', size: 2, type: 'classic' },
+  { name: 'Melanie', size: 2, type: 'classic' },
+  { name: 'Raya', size: 4, type: 'trending' },
+  { name: 'Harlow', size: 4, type: 'trending' },
+  { name: 'Brooks', size: 5, type: 'trending' },
+];
+
+const colors = {
+  trending: 'text-brand-coral',
+  invented: 'text-brand-yellow',
+  classic: 'text-brand-dark',
+  double: 'text-purple-600',
+  nature: 'text-green-600',
+  mythology: 'text-indigo-600',
+  dramatic: 'text-red-500',
+  nickname: 'text-blue-500',
+};
+
+const sizes = {
+  1: 'text-xs',
+  2: 'text-sm',
+  3: 'text-base',
+  4: 'text-lg',
+  5: 'text-xl md:text-2xl',
+  6: 'text-2xl md:text-3xl',
+};
+
+// Shuffle and position names
+const shuffled = [...allNames].sort(() => Math.random() - 0.5).slice(0, 28);
+---
+
+<div class="relative w-full h-[400px] md:h-[500px] overflow-hidden bg-gradient-to-b from-white to-brand-cream rounded-2xl border border-gray-100">
+  <div class="absolute inset-0 flex flex-wrap content-center justify-center gap-x-4 gap-y-3 p-8">
+    {shuffled.map((item, i) => (
+      <a
+        href={`/name/${item.name.toLowerCase().replace(/[^a-z]/g, '')}`}
+        class={`inline-block font-display font-semibold transition-all duration-300 hover:scale-110 cursor-pointer ${colors[item.type] || 'text-brand-dark'} ${sizes[item.size] || 'text-sm'} opacity-${Math.max(60, 100 - i * 2)}`}
+        style={`animation-delay: ${i * 100}ms`}
+      >
+        {item.name}
+      </a>
+    ))}
+  </div>
+
+  <!-- Floating decoration -->
+  <div class="absolute top-6 left-6 w-20 h-20 bg-brand-coral/10 rounded-full blur-2xl"></div>
+  <div class="absolute bottom-6 right-6 w-32 h-32 bg-brand-yellow/10 rounded-full blur-3xl"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-brand-coral/5 rounded-full blur-3xl"></div>
+</div>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
