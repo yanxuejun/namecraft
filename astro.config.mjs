@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://namecraft.pages.dev',
+  site: 'https://whatmeans.name',
   output: 'static',
   integrations: [
     react(),

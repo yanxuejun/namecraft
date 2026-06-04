@@ -19,7 +19,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteUrl = 'https://namecraft.pages.dev';
+const siteUrl = 'https://whatmeans.name';
 const fullTitle = title === 'NameCraft' ? title : `${title} | NameCraft`;
 const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 ---
@@ -66,11 +66,11 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "NameCraft",
-        "url": "https://namecraft.pages.dev",
+        "url": "https://whatmeans.name",
         "description": "Discover 2026 baby name trends, meanings, and creative name ideas",
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://namecraft.pages.dev/search?q={search_term_string}",
+          "target": "https://whatmeans.name/search?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       }
