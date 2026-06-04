@@ -414,10 +414,9 @@
       {
         "name": "EVT - Outbound Links",
         "type": "LINK_CLICK",
-        "autoEventFilter": [],
-        "filter": [
+        "autoEventFilter": [
           {
-            "type": "DOES_NOT_CONTAIN",
+            "type": "NOT_CONTAINS",
             "parameter": [
               {
                 "type": "TEMPLATE",
