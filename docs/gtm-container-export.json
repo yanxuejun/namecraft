@@ -417,7 +417,7 @@
         "autoEventFilter": [],
         "filter": [
           {
-            "type": "NOT_CONTAINS",
+            "type": "DOES_NOT_CONTAIN",
             "parameter": [
               {
                 "type": "TEMPLATE",
